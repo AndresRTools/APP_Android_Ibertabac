@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">IberTabac</string>
+
+    <string name="server_ip">80.24.57.45</string>
+    <string name="puerto">2121</string>
+    <string name="pwd">Vill@lba9988</string>
+    <string name="usuario">FTP1</string>
+
+    //string para activity main
+
+    <string name="hint1">Nombre de Estanco</string>
+    <string name="TituloMarco">NOMBRE ESTANCO</string>
+    <string name="NRUTA">Nº RUTA</string>
+    <string name="hint2">Selecciona Ruta</string>
+    <string name="menu_icon_description">3puntosConfig</string>
+    <string name="CaptureImage">Imagen capturada</string>
+    <string name="username">Nombre de User</string>
+    <string name="btn_open_vpn">Abrir VPN</string>
+
+    <string name="borrar">Borrar</string>
+    <string name="enviar">Enviar</string>
+    <string name="tomarFoto">Tomar Foto</string>
+
+    <string name="settings">Configuraciones</string>
+    <string name="User_message">Nombre de Usuario</string>
+
+    //mensajes FTP
+    <string name="statusVPN">La VPN sin conexión. Conectar con la VPN</string>
+    <string name="statusConnect">Conexión exitosa a %s</string>
+    <string name="createDirectory">Directorio creado: %s</string>
+    <string name="errorDirectory">Error al crear el directorio: %s</string>
+    <string name="existDirectory">Directorio ya existe: %s</string>
+
+    <string name="imageSuccess">Imagen %s subida con éxito.</string>
+    <string name="imageError">Error al subir la imagen %s</string>
+    <string name="errorAuthentication">Error de authenticate.</string>
+
+    <string name="subdirectoryExists">Subdirectorio ya existe: %s</string>
+    <string name="subdirectoryCreate">Subdirectorio creado: %s</string>
+    <string name="subdirectoryError">Error al crear subdirectorio : %s</string>
+
+    //string para activity password
+
+    <string name="welcome">Bienvenido</string>
+    <string name="psw">Contraseña</string>
+    <string name="loginPsw">Ingresa tu contraseña</string>
+    <string name="validar">Validar</string>
+    <string name="passwordApp">1b3rt@b@c</string>
+
+
+    //string para activity usuario
+    <string name="access">Acceso al Sistema</string>
+    <string name="user">Ingresar usuario nuevo </string>
+    <string name="init">Validar Usuario</string>
+
+</resources>

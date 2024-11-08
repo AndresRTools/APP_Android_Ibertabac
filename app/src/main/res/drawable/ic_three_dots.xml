@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="64dp"
+    android:viewportWidth="24"
+    android:viewportHeight="64">
+
+    <!-- Primer punto (Círculo centrado en X=12) -->
+    <path
+        android:fillColor="#8d5f28"
+        android:pathData="M12,25a3,3 0 1,1 0,-6a3,3 0 1,1 0,6z"/>
+
+    <!-- Segundo punto (Círculo centrado en X=12) -->
+    <path
+        android:fillColor="#8d5f28"
+        android:pathData="M12,35a3,3 0 1,1 0,-6a3,3 0 1,1 0,6z"/>
+
+    <!-- Tercer punto (Círculo centrado en X=12) -->
+    <path
+        android:fillColor="#8d5f28"
+        android:pathData="M12,45a3,3 0 1,1 0,-6a3,3 0 1,1 0,6z"/>
+
+</vector>
