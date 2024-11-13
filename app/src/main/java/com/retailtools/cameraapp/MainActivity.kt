@@ -54,6 +54,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.annotation.RequiresApi
 import java.text.Normalizer
+import java.util.concurrent.atomic.AtomicInteger
 
 
 class MainActivity : AppCompatActivity() {
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar?.title = "IberTabac                                          v1.1"
+        supportActionBar?.title = "IberTabac                                          v1.2"
 
 
         initializeViews()
@@ -179,6 +180,7 @@ class MainActivity : AppCompatActivity() {
         btnDeleteAll.setOnClickListener{
             editEstanco.text.clear() // Esto limpia el campo de texto de Nombre de estanco
             photoAdapter.removeAllPhotos() // Elimina todas las fotos
+            textViewStatus.text = "" //Borramos comentarios
         }
 /////////////////////////////////////////////////////////////////////////////////////
                 //ACTIVIDAD DEL BOTON ABRIR VNP//
@@ -380,15 +382,25 @@ class MainActivity : AppCompatActivity() {
     //ACTIVIDAD REALIACIONADA A LA CONEXION FTP PARA TRASMISION DE DATOS
 @SuppressLint("SetTextI18n")
 @RequiresApi(Build.VERSION_CODES.M)
-private fun uploadImageToFtp(promoter: String, selectedRoute: String, server: String, port: Int, user: String, password: String, photoPaths: List<String>) {
+private fun uploadImageToFtp(
+    promoter: String,
+    selectedRoute: String,
+    server: String,
+    port: Int,
+    user: String,
+    password: String,
+    photoPaths: List<String>
+) {
     if (!isVpnConnected()) {
         textViewStatus.text = getString(R.string.statusVPN)
         textViewStatus.setTextColor(Color.RED)
         return
     }
 
-
     val ftpClient = FTPClient()
+    val totalPhotos = photoPaths.size
+    val uploadedCount = AtomicInteger(0)  // Contador para las fotos subidas
+
     Thread {
         try {
             // Conectar al servidor
@@ -396,11 +408,11 @@ private fun uploadImageToFtp(promoter: String, selectedRoute: String, server: St
             val login = ftpClient.login(user, password)
             if (login) {
                 runOnUiThread {
-                    textViewStatus.text = getString(R.string.statusConnect,server)
+                    textViewStatus.text = getString(R.string.statusConnect, server)
                     textViewStatus.setTextColor(Color.GRAY)
                 }
 
-                //Configuramos el modo de transferencia pasiva y binaria
+                // Configurar el modo de transferencia pasiva y binaria
                 ftpClient.enterLocalPassiveMode()
                 ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE)
 
@@ -411,17 +423,17 @@ private fun uploadImageToFtp(promoter: String, selectedRoute: String, server: St
                     if (dirCreated) {
                         ftpClient.changeWorkingDirectory(directoryName)
                         runOnUiThread {
-                            textViewStatus.text = getString(R.string.createDirectory,directoryName)
+                            textViewStatus.text = getString(R.string.createDirectory, directoryName)
                         }
                     } else {
                         runOnUiThread {
-                            textViewStatus.text = getString(R.string.errorDirectory,directoryName)
+                            textViewStatus.text = getString(R.string.errorDirectory, directoryName)
                         }
                         return@Thread
                     }
                 } else {
                     runOnUiThread {
-                        textViewStatus.text = getString(R.string.existDirectory,directoryName)
+                        textViewStatus.text = getString(R.string.existDirectory, directoryName)
                     }
                 }
 
@@ -447,7 +459,18 @@ private fun uploadImageToFtp(promoter: String, selectedRoute: String, server: St
                             }
                         } else {
                             runOnUiThread {
-                                textViewStatus.text = getString(R.string.imageError ,file.name)
+                                textViewStatus.text = getString(R.string.imageError, file.name)
+                            }
+                        }
+
+                        // Aumentar el contador de fotos subidas
+                        uploadedCount.incrementAndGet()
+
+                        // Comprobar si ya se subieron todas las imágenes
+                        if (uploadedCount.get() == totalPhotos) {
+                            runOnUiThread {
+                                textViewStatus.text = getString(R.string.uploadComplete)
+                                // Aquí puedes habilitar otras acciones, como botones o cambiar el estado de la UI
                             }
                         }
                     }
@@ -471,6 +494,7 @@ private fun uploadImageToFtp(promoter: String, selectedRoute: String, server: St
         }
     }.start()
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     //ACTIVIDAD PARA DETECTAR CONEXION O DESCONEXION DE VPN
     @RequiresApi(Build.VERSION_CODES.M)

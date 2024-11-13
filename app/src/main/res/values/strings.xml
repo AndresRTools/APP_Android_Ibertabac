@@ -34,6 +34,7 @@
     <string name="imageSuccess">Imagen %s subida con éxito.</string>
     <string name="imageError">Error al subir la imagen %s</string>
     <string name="errorAuthentication">Error de authenticate.</string>
+    <string name="uploadComplete">Todas las fotos han sido subidas correctamente.</string>
 
     <string name="subdirectoryExists">Subdirectorio ya existe: %s</string>
     <string name="subdirectoryCreate">Subdirectorio creado: %s</string>

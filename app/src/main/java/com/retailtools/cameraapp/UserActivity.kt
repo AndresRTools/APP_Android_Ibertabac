@@ -15,7 +15,7 @@ class UserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
-        supportActionBar?.title = "IberTabac                                          v1.1"
+        supportActionBar?.title = "IberTabac                                          v1.2"
 
         val textViewUser2: TextView = findViewById(R.id.textViewUser2)
         val edtUser = findViewById<EditText>(R.id.editTextUsername)

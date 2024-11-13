@@ -12,7 +12,7 @@ class PasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_password)
-        supportActionBar?.title = "IberTabac                                          v1.1"
+        supportActionBar?.title = "IberTabac                                          v1.2"
         val edtPassword = findViewById<EditText>(R.id.editTextPassword)
         val btnLogin = findViewById<Button>(R.id.buttonLogin)
         val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
