@@ -164,6 +164,7 @@ class MainActivity : AppCompatActivity() {
         sendButtonConnect.setOnClickListener {
             //val promoter = editTextUser.text.toString()
             val promoter = textViewUser.text.toString()
+            Toast.makeText(this, "No pulsar aún boton de BORRAR", Toast.LENGTH_SHORT).show()
 
             if (photoList.isNotEmpty()) {
                 //Log.d("ImageUpload", "Imágenes a subir: $photoList")
@@ -470,7 +471,9 @@ private fun uploadImageToFtp(
                         if (uploadedCount.get() == totalPhotos) {
                             runOnUiThread {
                                 textViewStatus.text = getString(R.string.uploadComplete)
-                                // Aquí puedes habilitar otras acciones, como botones o cambiar el estado de la UI
+                                Toast.makeText(this, "Fotos en el servidor correctamente", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Puede pulsar Borrar", Toast.LENGTH_SHORT).show()
+
                             }
                         }
                     }
